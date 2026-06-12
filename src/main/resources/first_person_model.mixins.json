@@ -1,0 +1,21 @@
+{
+  "required": true,
+  "package": "vbonedra.first_person_model.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "target": "DEFAULT",
+  "mixins": [
+    "EntityRendererMixin",
+    "GuiInGameMixin",
+    "GuiInventoryMixin",
+    "ItemMixin",
+    "ModelBipedMixin",
+    "RenderGlobalMixin",
+    "RenderPlayerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}
