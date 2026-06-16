@@ -11,7 +11,7 @@ public class FPMConfigs extends SimpleConfigs {
     public static final ConfigBoolean RenderFirstPersonModel = new ConfigBoolean("Render First Person Model", true);
 //    public static final ConfigBoolean RenderHeadArmorInFirstPersonModel = new ConfigBoolean("Render Head Armor in First Person Model", true);
 //    public static final ConfigBoolean RenderOffHand = new ConfigBoolean("Render Off Hand", false);
-    public static final ConfigBoolean RenderHudHandsInFirstPersonModel = new ConfigBoolean("Render Hud Hands In First Person Model", true);
+    public static final ConfigBoolean RenderHudHandsInFirstPersonModel = new ConfigBoolean("Render Hud Hands In First Person Model", false);
     public static final ConfigBoolean RenderArmorOnHudHand = new ConfigBoolean("Render Armor on Hud Hand", true);
     public static final ConfigBoolean CameraBobbingRoll = new ConfigBoolean("Camera Bobbing Roll", true);
     public static final ConfigBoolean CameraBobbingPitch = new ConfigBoolean("Camera Bobbing Pitch", true);
