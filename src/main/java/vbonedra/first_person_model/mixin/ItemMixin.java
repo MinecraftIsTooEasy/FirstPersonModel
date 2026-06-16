@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(EntityPlayer.class)
 public class ItemMixin {
-    // swing on all item bobbing
+    // swing on all item-bobbing
     @Inject(method = "bobItem()V", at = @At("HEAD"))
     private void injectThrowableSwingViaBob(CallbackInfo ci) {
         EntityPlayer player = (EntityPlayer) (Object) this;

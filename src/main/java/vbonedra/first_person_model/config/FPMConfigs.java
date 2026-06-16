@@ -13,10 +13,6 @@ public class FPMConfigs extends SimpleConfigs {
 //    public static final ConfigBoolean RenderOffHand = new ConfigBoolean("Render Off Hand", false);
     public static final ConfigBoolean RenderHudHandsInFirstPersonModel = new ConfigBoolean("Render Hud Hands In First Person Model", false);
     public static final ConfigBoolean RenderArmorOnHudHand = new ConfigBoolean("Render Armor on Hud Hand", true);
-    public static final ConfigBoolean CameraBobbingRoll = new ConfigBoolean("Camera Bobbing Roll", true);
-    public static final ConfigBoolean CameraBobbingPitch = new ConfigBoolean("Camera Bobbing Pitch", true);
-    public static final ConfigDouble CameraBobbingRollIntensity = new ConfigDouble("Camera Bobbing Roll Intensity", 1, 0, 10);
-    public static final ConfigDouble CameraBobbingPitchIntensity = new ConfigDouble("Camera Bobbing Pitch Intensity", 1, 0, 10);
     public static final ConfigDouble HeadOffset = new ConfigDouble("Head Offset", 4, -10, 10);
 
     private static final FPMConfigs Instance;
@@ -43,10 +39,6 @@ public class FPMConfigs extends SimpleConfigs {
                 RenderFirstPersonModel,
                 RenderHudHandsInFirstPersonModel,
                 RenderArmorOnHudHand,
-                CameraBobbingRoll,
-                CameraBobbingRollIntensity,
-                CameraBobbingPitch,
-                CameraBobbingPitchIntensity,
                 HeadOffset
         );
         Total.addAll(MainBase);
