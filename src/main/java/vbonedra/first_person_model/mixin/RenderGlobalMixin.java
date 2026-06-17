@@ -9,6 +9,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import vbonedra.first_person_model.config.FPMConfigs;
+import vbonedra.first_person_model.util.FirstPersonState;
 
 @Mixin(value = RenderGlobal.class)
 public abstract class RenderGlobalMixin {
@@ -21,8 +22,12 @@ public abstract class RenderGlobalMixin {
     @Redirect(method = "renderEntities", at = @At(value = "FIELD", target = "Lnet/minecraft/GameSettings;thirdPersonView:I"))
     private int redirectThirdPersonView(GameSettings settings) {
         if (settings.thirdPersonView == 0) {
-            if (FPMConfigs.RenderFirstPersonModel.getBooleanValue()) return 1;
+            if (FPMConfigs.RenderFirstPersonModel.getBooleanValue()) {
+                FirstPersonState.isRenderingFirstPersonModel = true;
+                return 1;
+            }
         }
+        FirstPersonState.isRenderingFirstPersonModel = false;
         return settings.thirdPersonView;
     }
 

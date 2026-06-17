@@ -12,6 +12,8 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import vbonedra.first_person_model.config.FPMConfigs;
 
+import static vbonedra.first_person_model.util.FirstPersonState.*;
+
 @Mixin(RenderPlayer.class)
 public abstract class RenderPlayerMixin extends RendererLivingEntity {
     @Shadow private ModelBiped modelBipedMain;
@@ -82,9 +84,10 @@ public abstract class RenderPlayerMixin extends RendererLivingEntity {
     @Redirect(method = "renderSpecials", at = @At(value = "INVOKE", target = "Lnet/minecraft/ItemRenderer;renderItem(Lnet/minecraft/EntityLivingBase;Lnet/minecraft/ItemStack;I)V"))
     private void removeMapItem(ItemRenderer instance, EntityLivingBase entity, ItemStack itemStack, int renderPass) {
         Minecraft mc = Minecraft.getMinecraft();
-        boolean isFirstPersonWorld = (entity == mc.thePlayer)
-                && (mc.gameSettings.thirdPersonView == 0)
-                && !vbonedra.first_person_model.util.FirstPersonState.isRenderingInventoryPuppet;
+        boolean isFirstPersonWorld = entity == mc.thePlayer
+                && !isRenderingInventoryPuppet
+                && isRenderingFirstPersonModel
+                ;
         if (isFirstPersonWorld) {
             if (itemStack != null
                 && itemStack.itemID == Item.map.itemID
@@ -113,7 +116,10 @@ public abstract class RenderPlayerMixin extends RendererLivingEntity {
     private void offsetPlayerIn1stPerson(AbstractClientPlayer entity, float par2, float par3, float par4, CallbackInfo ci) {
         if (!FPMConfigs.RenderFirstPersonModel.getBooleanValue()) return;
         Minecraft mc = Minecraft.getMinecraft();
-        if (entity == mc.thePlayer && entity.height >= 1.4f) {
+        if (entity == mc.thePlayer
+                && !isRenderingInventoryPuppet
+                && isRenderingFirstPersonModel
+        ) {
             float v = (float) FPMConfigs.HeadOffset.getDoubleValue();
 
             float i = (float) (entity.rotationYaw % 360 / 90 * Math.PI / 2);
@@ -146,6 +152,5 @@ public abstract class RenderPlayerMixin extends RendererLivingEntity {
 //        }
 //        return 0.0F;
 //    }
-
 
 }
