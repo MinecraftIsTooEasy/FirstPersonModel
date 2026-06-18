@@ -23,55 +23,6 @@ public abstract class RenderPlayerMixin extends RendererLivingEntity {
         super(par1ModelBase, par2);
     }
 
-    // renders armor on player hand, just a cool niche thing. TODO: map has broken render
-    @Inject(method = "renderFirstPersonArm(Lnet/minecraft/EntityPlayer;)V", at = @At("TAIL"))
-    private void renderArmorOnHUDHand(EntityPlayer player, CallbackInfo ci) {
-        ItemStack itemStack = player.inventory.mainInventory[player.inventory.currentItem];
-        if (itemStack != null && itemStack.getItem() == Item.map) return;
-        if (FPMConfigs.RenderArmorOnHudHand.getBooleanValue()) {
-            GL11.glPushMatrix();
-            GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-            // maybe no need for it
-            ItemStack chestplateStack = player.inventory.armorItemInSlot(2);
-            if (chestplateStack == null || !(chestplateStack.getItem() instanceof ItemArmor)) {
-                chestplateStack = player.inventory.armorItemInSlot(1);
-            }
-
-            if (chestplateStack != null && chestplateStack.getItem() instanceof ItemArmor armorItem) {
-                ResourceLocation armorTexture = RenderBiped.func_110857_a(armorItem, 1);
-//                ResourceLocation armorTexture = RenderBiped.func_110858_a(armorItem, 1, null);
-                if (armorTexture != null) {
-                    Minecraft.getMinecraft().getTextureManager().bindTexture(armorTexture);
-                    syncArmAngles(this.modelBipedMain, this.modelArmorChestplate);
-                    if (armorItem.getArmorMaterial() == Material.leather) {
-                        int color = armorItem.getColor(chestplateStack);
-                        float r = (float) (color >> 16 & 255) / 255.0F;
-                        float g = (float) (color >> 8 & 255) / 255.0F;
-                        float b = (float) (color & 255) / 255.0F;
-                        GL11.glColor3f(r, g, b);
-                    } else {
-                        GL11.glColor3f(1.0F, 1.0F, 1.0F);
-                    }
-                    this.modelArmorChestplate.bipedRightArm.showModel = true;
-                    this.modelArmorChestplate.bipedRightArm.render(0.0625F);
-                    this.modelArmorChestplate.bipedLeftArm.showModel = true;
-                    this.modelArmorChestplate.bipedLeftArm.render(0.0625F);
-                }
-            }
-            GL11.glPopMatrix();
-        }
-    }
-    @Unique
-    private void syncArmAngles(ModelBiped source, ModelBiped target) {
-        target.bipedRightArm.rotateAngleX = source.bipedRightArm.rotateAngleX;
-        target.bipedRightArm.rotateAngleY = source.bipedRightArm.rotateAngleY;
-        target.bipedRightArm.rotateAngleZ = source.bipedRightArm.rotateAngleZ;
-
-        target.bipedRightArm.rotationPointX = source.bipedRightArm.rotationPointX;
-        target.bipedRightArm.rotationPointY = source.bipedRightArm.rotationPointY;
-        target.bipedRightArm.rotationPointZ = source.bipedRightArm.rotationPointZ;
-    }
-
 //    // no head, without it its impossible to use first person model
 //    @Redirect(method = "renderSpecials", at = @At(value = "INVOKE", target = "Lnet/minecraft/TileEntitySkullRenderer;func_82393_a(FFFIFILjava/lang/String;)V"))
 //    private void disableHeadIf1stPers(TileEntitySkullRenderer instance, float v, float par1, float par2, int par3, float par4, int par5, String par6, AbstractClientPlayer player) {

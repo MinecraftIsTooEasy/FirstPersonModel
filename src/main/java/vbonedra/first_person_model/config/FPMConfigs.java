@@ -9,10 +9,7 @@ import java.util.List;
 
 public class FPMConfigs extends SimpleConfigs {
     public static final ConfigBoolean RenderFirstPersonModel = new ConfigBoolean("Render First Person Model", true);
-//    public static final ConfigBoolean RenderHeadArmorInFirstPersonModel = new ConfigBoolean("Render Head Armor in First Person Model", true);
-//    public static final ConfigBoolean RenderOffHand = new ConfigBoolean("Render Off Hand", false);
     public static final ConfigBoolean RenderHudHandsInFirstPersonModel = new ConfigBoolean("Render Hud Hands In First Person Model", false);
-    public static final ConfigBoolean RenderArmorOnHudHand = new ConfigBoolean("Render Armor on Hud Hand", true);
     public static final ConfigDouble HeadOffset = new ConfigDouble("Head Offset", 4, -10, 10);
 
     private static final FPMConfigs Instance;
@@ -38,7 +35,6 @@ public class FPMConfigs extends SimpleConfigs {
         MainBase = List.of(
                 RenderFirstPersonModel,
                 RenderHudHandsInFirstPersonModel,
-                RenderArmorOnHudHand,
                 HeadOffset
         );
         Total.addAll(MainBase);

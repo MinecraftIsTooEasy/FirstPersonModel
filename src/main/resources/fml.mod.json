@@ -35,5 +35,8 @@
   "suggests": {
     "another-mod": "*"
   },
-  "accessWidener": "first_person_model.accesswidener"
+  "accessWidener": "first_person_model.accesswidener",
+  "custom": {
+    "modmenu:clientsideOnly": true
+  }
 }
