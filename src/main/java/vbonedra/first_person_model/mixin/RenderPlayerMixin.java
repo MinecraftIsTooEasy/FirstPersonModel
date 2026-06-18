@@ -3,8 +3,6 @@ package vbonedra.first_person_model.mixin;
 import net.minecraft.*;
 import org.lwjgl.opengl.GL11;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
@@ -16,8 +14,6 @@ import static vbonedra.first_person_model.util.FirstPersonState.*;
 
 @Mixin(RenderPlayer.class)
 public abstract class RenderPlayerMixin extends RendererLivingEntity {
-    @Shadow private ModelBiped modelBipedMain;
-    @Shadow private ModelBiped modelArmorChestplate;
 
     public RenderPlayerMixin(ModelBase par1ModelBase, float par2) {
         super(par1ModelBase, par2);
