@@ -20,8 +20,7 @@ public abstract class ModelBipedMixin {
     // eating animation
     @Inject(method = "setRotationAngles(FFFFFFLnet/minecraft/Entity;)V", at = @At("TAIL"))
     private void injectEatingAnimation(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale, Entity entity, CallbackInfo ci) {
-        if (entity instanceof EntityPlayer) {
-            EntityPlayer player = (EntityPlayer) entity;
+        if (entity instanceof EntityPlayer player) {
             ItemStack heldItem = player.getItemInUse();
             if (heldItem != null && player.getItemInUseCount() > 0) {
                 EnumItemInUseAction action = heldItem.getItemInUseAction(player);

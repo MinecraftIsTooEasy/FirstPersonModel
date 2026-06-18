@@ -12,8 +12,7 @@ import vbonedra.first_person_model.util.FirstPersonState;
 @Mixin(value = RenderGlobal.class)
 public abstract class RenderGlobalMixin {
 
-    @Shadow
-    private Minecraft mc;
+    @Shadow private Minecraft mc;
 
     // TODO: idk which one better
     // renders player no matter what
