@@ -1,6 +1,7 @@
 package vbonedra.first_person_model.mixin;
 
 import net.minecraft.*;
+import net.xiaoyu233.fml.FishModLoader;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -40,14 +41,10 @@ public abstract class ModelBipedMixin {
     private void injectCustomRender(Entity par1Entity, float par2, float par3, float par4, float par5, float par6, float par7, CallbackInfo ci) {
         if (!FPMConfigs.RenderFirstPersonModel.getBooleanValue()) return;
         Minecraft mc = Minecraft.getMinecraft();
-
-        boolean isFirstPerson = (par1Entity == mc.thePlayer)
+        if (!((par1Entity == mc.thePlayer)
                 && (mc.gameSettings.thirdPersonView == 0)
-                && !vbonedra.first_person_model.util.FirstPersonState.isRenderingInventoryPuppet;
-
-        if (!isFirstPerson) {
-            return;
-        }
+                && !vbonedra.first_person_model.util.FirstPersonState.isRenderingInventoryPuppet
+        )) return;
 
         boolean isHoldingMap = false;
         if (mc.thePlayer != null) {

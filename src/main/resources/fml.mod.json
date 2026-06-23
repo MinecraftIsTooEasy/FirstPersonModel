@@ -13,13 +13,10 @@
   },
   "license": "CC0-1.0",
   "icon": "assets/first_person_model/icon.png",
-  "environment": "*",
+  "environment": "client",
   "entrypoints": {
-    "main": [
+    "client": [
       "vbonedra.first_person_model.FirstPersonModelMod"
-    ],
-    "registry": [
-      "vbonedra.first_person_model.register.FirstPersonModelRegistryInit"
     ]
   },
   "mixins": [

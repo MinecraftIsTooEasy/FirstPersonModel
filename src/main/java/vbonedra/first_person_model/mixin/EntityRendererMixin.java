@@ -9,7 +9,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import vbonedra.first_person_model.config.FPMConfigs;
 
-// fancy camera movement
 @Mixin(EntityRenderer.class)
 public abstract class EntityRendererMixin {
     @Shadow private Minecraft mc;
